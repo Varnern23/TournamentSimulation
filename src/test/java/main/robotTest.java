@@ -44,6 +44,16 @@ class RobotTest {
         Robot r = new TestRobot("Robo1");
         assertEquals("TEST_ACTION", r.getAction());
     }
+    @Test
+    void defaultGetActionImplementation() {
+        Robot r = new Robot("Robo1");
+        assertEquals("S", r.getAction());
+    }
+    @Test
+    void robot3GetActionImplementation() {
+        Robot r = new Robot("Robo1");
+        assertTrue(r.getAction().equals("S") || r.getAction().equals("D"));
+    }
 
     @Test
     void testRecordRound() {

@@ -18,7 +18,7 @@ public abstract class Game {
 
     public abstract void run(Robot r1, Robot r2);
 
-    public abstract String checkEnd();
+    public abstract Boolean checkEnd();
 
 
     public void addMoveListener(MoveListener listener) {
@@ -38,12 +38,14 @@ public abstract class Game {
     }
 
     protected void notifyMoveListeners(String action) {
+    	System.out.println(action);
         for (MoveListener listener : moveListeners) {
             listener.update(action);
         }
     }
 
     protected void notifyScoreListeners(int score1, int score2) {
+    	System.out.println("r1 " + score1 + ", r2 "+score2);
         for (ScoreListener listener : scoreListeners) {
             listener.update(score1, score2);
         }

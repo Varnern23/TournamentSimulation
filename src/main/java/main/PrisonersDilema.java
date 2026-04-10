@@ -9,9 +9,15 @@ public class PrisonersDilema extends Game{
     }
 
     public void run(Robot r1, Robot r2) {
+    	
+    	if (checkEnd() == true) {
+    		
+    	}
 
         String action1 = r1.getAction();
+        notifyMoveListeners(action1);
         String action2 = r2.getAction();
+        notifyMoveListeners(action2);
 
         int[] payoffs = calculatePayoff(action1, action2);
 
@@ -41,6 +47,7 @@ public class PrisonersDilema extends Game{
 
         r1.increaseRoundScore(score1);
         r2.increaseRoundScore(score2);
+        notifyScoreListeners(score1, score2);
 
         currentRound++;
     }
@@ -56,12 +63,9 @@ public class PrisonersDilema extends Game{
         if (a1.equals("D") && a2.equals("S"))
             return new int[]{5, 0};
 
-        return new int[]{0, 0}; // D, D
+        return new int[]{0, 0}; 
     }
 
-    public void reset() {
-        currentRound = 1;
-    }
 
 	@Override
 	public int giveOutcome(Robot robot) {
@@ -69,9 +73,11 @@ public class PrisonersDilema extends Game{
 	}
 
 	@Override
-	public String checkEnd() {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean checkEnd() {
+		if(currentRound >= 3) {
+			return true;
+		}
+		else return false;
 	}
     
 }

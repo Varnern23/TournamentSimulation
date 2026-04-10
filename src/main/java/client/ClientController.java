@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import main.MatchInfo;
 import main.Robot;
-import main.RobotEx;
 import main.RoundInfo;
 
 @RestController
 @RequestMapping("/robot")
 public class ClientController {
 
-    private Robot robot = new RobotEx("ClientBot");
+    private Robot robot = new Robot();
 
     @GetMapping("/action")
     public String getAction() {

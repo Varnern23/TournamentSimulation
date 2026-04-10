@@ -1,5 +1,12 @@
 package main;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,13 +29,26 @@ class ClientTest {
     }
 
     @Test
-    void getActionReturnsMove() {
-        String url = baseUrl() + "/robot/action";
+    void testRemoteBotGetAction() {
+        RemoteBot bot = new RemoteBot("TestBot", "localhost", 8080);
 
-        String response = rest.getForObject(url, String.class);
+        String action = bot.getAction();
 
-        Assertions.assertNotNull(response);
-        Assertions.assertFalse(response.isEmpty());
+        assertNotNull(action);
+        assertEquals(action, bot.getAction());
+        assertFalse(action.isEmpty());
+    }
+    @Test
+    void testRemoteBotGiveRecord() {
+        RemoteBot bot = new RemoteBot("TestBot", "localhost", 8080);
+
+        List<RoundInfo> history = List.of(
+            new RoundInfo(1, "Roboto", "D", "D", 5, 5)
+        );
+
+        assertDoesNotThrow(() -> 
+            bot.giveRecord("OpponentBot", history)
+        );
     }
 
     @Test

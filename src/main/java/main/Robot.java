@@ -1,6 +1,6 @@
 package main;
 import java.util.HashMap;
-public abstract class Robot {
+public class Robot {
 	
 	protected HashMap<Integer, RoundInfo> history = new HashMap<>();
 	private String name = "";
@@ -10,6 +10,12 @@ public abstract class Robot {
 		this.name = name; 
 		this.history = new HashMap<>();
 		this.rScore = 0;
+	}
+	public Robot() {
+		this.name = "EXbot";
+		this.history = new HashMap<>();
+		this.rScore = 0;
+	
 	}
 	
 	public String getName() {
@@ -24,7 +30,9 @@ public abstract class Robot {
     	rScore += num;
     }
     
-    public abstract String getAction();
+    public String getAction() {
+    	return "S";
+    }
     
     public void record(int round, RoundInfo info) {
     	history.put(round, info);

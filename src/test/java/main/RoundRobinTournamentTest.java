@@ -25,11 +25,11 @@ class RoundRobinTournamentTest {
 
     @Test
     void testTournamentExecution() {
-        while (tournament.checkEnd().equals("Tournament Ongoing")) {
+        while (tournament.checkEnd() == false) {
             tournament.playNextMatch();
         }
 
-        assertEquals("Tournament Over", tournament.checkEnd());
+        assertEquals(true, tournament.checkEnd());
 
         for (Robot player : players) {
             assertTrue(player.getRoundScore() >= 0, player.getName() + " should have a valid score.");

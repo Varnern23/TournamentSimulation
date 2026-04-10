@@ -15,9 +15,7 @@ public abstract class Tournament {
 
     public abstract Robot run(Robot r1, Robot r2);
 
-    public abstract List<Robot> getBracket();
-
-    public abstract String checkEnd();
+    public abstract boolean checkEnd();
     
     public String getName() {
     	return tName;

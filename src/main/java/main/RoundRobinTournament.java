@@ -19,17 +19,13 @@ public class RoundRobinTournament extends Tournament {
         return game.giveOutcome(r1) > game.giveOutcome(r2) ? r1 : r2;
     }
 
-    @Override
-    public List<Robot> getBracket() {
-        return bracket;
-    }
 
     @Override
-    public String checkEnd() {
+    public boolean checkEnd() {
         if (currentMatchIndex >= bracket.size() * (bracket.size() - 1)) {
-            return "Tournament Over";
+            return true;
         }
-        return "Tournament Ongoing";
+        return false;
     }
 
     public void playNextMatch() {

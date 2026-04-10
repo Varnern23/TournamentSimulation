@@ -18,8 +18,8 @@ class GameTest {
         }
 
         @Override
-        public String checkEnd() {
-            return "END";
+        public Boolean checkEnd() {
+            return true;
         }
     }
 
@@ -55,9 +55,18 @@ class GameTest {
     }
 
     @Test
-    void testRemoveMoveListener() {
+    void testRemoveListeners() {
         Game game = new TestGame();
         TestMoveListener listener = new TestMoveListener();
+        TestScoreListener listener2 = new TestScoreListener();
+        
+        game.addScoreListener(listener2);
+        game.removeScoreListener(listener2);
+        
+        ((TestGame) game).notifyScoreListeners(5, 5);
+        
+        assertEquals(listener2.score1, -1);
+        assertEquals(listener2.score2, -1);
 
         game.addMoveListener(listener);
         game.removeMoveListener(listener);
@@ -98,6 +107,6 @@ class GameTest {
     @Test
     void testCheckEnd() {
         Game game = new TestGame();
-        assertEquals("END", game.checkEnd());
+        assertEquals(true, game.checkEnd());
     }
 }
