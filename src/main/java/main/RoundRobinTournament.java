@@ -23,6 +23,9 @@ public class RoundRobinTournament extends Tournament {
     @Override
     public boolean checkEnd() {
         if (currentMatchIndex >= bracket.size() * (bracket.size() - 1)) {
+        	for(Robot player : bracket) {
+        		System.out.println(player.getName() + " " + player.getRoundScore());
+        	}
             return true;
         }
         return false;
