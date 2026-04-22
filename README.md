@@ -1,6 +1,6 @@
 # Distributed Tournament Simulation System
 
-A distributed, API-driven tournament framework that simulates competitive gameplay between autonomous agents ("bots") using a client-server architecture.
+A distributed, API-driven tournament framework that simulates competitive gameplay between autonomous agents ("bots") using a client-server architecture designed through RESTful.
 
 ---
 
@@ -19,7 +19,7 @@ Key features:
 
 ## 🏗️ System Architecture
 
-![System Diagram](docs/images/system-diagram.png)
+![System Diagram](docs/pictures/21.png)
 
 ### Components:
 
@@ -91,9 +91,10 @@ Simulate a Prisoner’s Dilemma tournament between multiple bots with different 
 ## 📈 Future Improvements
 
 * Add support for additional games
-* Implement tournament visualization dashboard
-* Introduce persistence (database storage)
-* Improve bot strategy complexity
+* Implement tournament visualization via JavaFX
+* Introduce an account system and a database backing
+* Introduce a chat function for spectators
+* Allow the ability to gamble a fake currency on tournament results
 
 ---
 
