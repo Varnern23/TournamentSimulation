@@ -15,6 +15,8 @@ as a button leading to a registration or spectator page for that tournament.
 
 ## UML Diagram
 
+![System Diagram](pictures/31.png)
+
 _Figure 1 shows the updated UML diagram for the Tournament and related classes._
 As seen in figure 1 above, our existing architecture remains relatively unchanged for the most
 part. Most of the new modification will be focused around the Tournament class. We have
@@ -36,18 +38,25 @@ RemoteListener handles the passing of information to a remote location, which in
 would be our client. When a client wants to view a running tournament, they can call spectate()
 inside the server, which adds a new RemoteListener to the tournament thereby allowing the
 client to be passed all the information they need.
+
+![System Diagram](pictures/32.png)
+
 _Figure 2 shows the sequence diagram of how a client can spectate a tournament._
 
 
 ## Model Views
 
-_Figure 2 Tournament View_
+![System Diagram](pictures/33.png)
 
+_Figure 3 Tournament View_
 
-_Figure 3 Spectator View_
+![System Diagram](pictures/34.png)
 
+_Figure 4 Spectator View_
 
-_Figure 4 Registration View_
+![System Diagram](pictures/35.png)
+
+_Figure 5 Registration View_
 
 ## Tournaments View
 
