@@ -16,19 +16,30 @@ allow for a user to input actions for the game instead of creating their own rob
 
 ## Diagrams
 
-```
+![System Diagram](pictures/21.png)
+
 Figure 1 shows our full UML diagram for the remote SITS system.
-```
+
+![System Diagram](pictures/22.png)
 
 **_Figure 2_** _shows the design for the NetworkedTournamentClient._
 
+![System Diagram](pictures/23.png)
 
 **Figure 3** shows the UML for the NetworkedTournamentServer.
+
+![System Diagram](pictures/24.png)
+
 **Figure 4:** Sequence diagram of Remote Action
 
+![System Diagram](pictures/25.png)
 
 **Figure 5:** Sequence diagram of Registration
+
+![System Diagram](pictures/26.png)
+
 **Figure 6:** Rough Html Design Idea
+
 The Remote robot differs from a local Robot because it doesn't run getactions() itself inside the
 tournament process. Instead, it holds the client's IP address and uses it to reach back to the
 original client machine whenever it needs to decide action.
