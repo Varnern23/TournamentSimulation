@@ -18,13 +18,13 @@ support the logging of different kinds of results.
 
 ## Diagrams
 ![System Diagram](pictures/11.png)
-```
-Figure 1: UML of the design
-```
 
-```
+Figure 1: UML of the design
+
+
+![System Diagram](pictures/12.png)
 Figure 2: Sequence diagram of the design
-```
+
 ## Robot
 
 Each robot is an automated agent that makes an action based on an internal decision-making
