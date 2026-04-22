@@ -17,7 +17,7 @@ able to exhibit distinct behavior in their decision process. And the system as a
 support the logging of different kinds of results.
 
 ## Diagrams
-
+![System Diagram](pictures/11.png)
 ```
 Figure 1: UML of the design
 ```
