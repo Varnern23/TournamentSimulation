@@ -2,7 +2,7 @@ package main;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
@@ -30,23 +30,25 @@ class ClientTest {
 
     @Test
     void testRemoteBotGetAction() {
-        RemoteBot bot = new RemoteBot("TestBot", "localhost", 8080);
-
-        String action = bot.getAction();
+        String url = baseUrl() + "/robot/action";
+        String action = rest.getForObject(url, String.class);
 
         assertNotNull(action);
-        assertEquals(action, bot.getAction());
-        assertFalse(action.isEmpty());
+        assertTrue(
+            action.equals("S") || action.equals("D"),
+            "Action must be S or D but was: " + action
+        );
     }
+
     @Test
     void testRemoteBotGiveRecord() {
-        RemoteBot bot = new RemoteBot("TestBot", "localhost", 8080);
+        RemoteBot bot = new RemoteBot("TestBot", "localhost", port);
 
         List<RoundInfo> history = List.of(
             new RoundInfo(1, "Roboto", "D", "D", 5, 5)
         );
 
-        assertDoesNotThrow(() -> 
+        assertDoesNotThrow(() ->
             bot.giveRecord("OpponentBot", history)
         );
     }
@@ -61,8 +63,8 @@ class ClientTest {
           "history": [
             {
               "round": 1,
-              "action1": "A",
-              "action2": "B",
+              "action1": "S",
+              "action2": "D",
               "score1": 1,
               "score2": 2
             }

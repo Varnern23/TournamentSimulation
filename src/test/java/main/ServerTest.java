@@ -24,8 +24,14 @@ class ServerTest {
     @Test
     void tournamentsAvailableEndpointResponds() {
         String url = baseUrl() + "/tournaments/available";
-        String body = rest.getForObject(url, String.class);
+        String[] body = rest.getForObject(url, String[].class);
+
         Assertions.assertNotNull(body);
+        Assertions.assertTrue(body.length > 0, "Should have at least one available tournament");
+        Assertions.assertTrue(
+            java.util.Arrays.asList(body).contains("default"),
+            "Default tournament should be listed as available"
+        );
     }
 
     @Test 
@@ -51,6 +57,10 @@ class ServerTest {
 
         Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assertions.assertTrue(response.getBody().contains("Registered"));
+        Assertions.assertTrue(
+            response.getBody().contains("TestBot"),
+            "Response should confirm the robot name that was registered"
+        );
     }
 
     @Test

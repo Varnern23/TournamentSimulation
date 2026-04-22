@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="MVC.SpectateTournamentViewController">
+   <top>
+      <HBox prefHeight="48.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="85.0"
+                    text="Back" onAction="#onBack">
+               <font><Font size="14.0" /></font>
+            </Button>
+            <Label fx:id="tournamentNameLabel" alignment="CENTER" prefHeight="75.0"
+                   prefWidth="444.0" text="&lt;Tournament Name&gt;">
+               <font><Font size="24.0" /></font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane fitToWidth="true" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="roundsVBox" prefWidth="600.0" spacing="5.0" style="-fx-padding: 10;" />
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
+
+
