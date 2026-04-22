@@ -23,6 +23,7 @@ Figure 1: UML of the design
 
 
 ![System Diagram](pictures/12.png)
+
 Figure 2: Sequence diagram of the design
 
 ## Robot
