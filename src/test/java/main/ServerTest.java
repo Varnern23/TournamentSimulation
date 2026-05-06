@@ -23,7 +23,7 @@ class ServerTest {
 
     @Test
     void tournamentsAvailableEndpointResponds() {
-        String url = baseUrl() + "/tournaments/available";
+        String url = baseUrl() + "/tournaments/openTournaments";
         String[] body = rest.getForObject(url, String[].class);
 
         Assertions.assertNotNull(body);

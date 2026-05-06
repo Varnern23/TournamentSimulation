@@ -8,6 +8,7 @@ public abstract class Tournament {
     Game game;
     List<Robot> players;
     String tName;
+    private List<RoundInfo> roundHistory = new ArrayList<>();
     
     private List<TournamentListener> listeners = new ArrayList<>();
 
@@ -17,7 +18,12 @@ public abstract class Tournament {
         this.players = players;
     }
 
-
+    public List<RoundInfo> getRoundHistory() {
+        return new ArrayList<>(roundHistory);
+    }
+    public void addRound(RoundInfo round) {
+        roundHistory.add(round);
+    }
     public void addTournamentListener(TournamentListener listener) {
         listeners.add(listener);
     }

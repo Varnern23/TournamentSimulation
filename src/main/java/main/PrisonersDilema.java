@@ -8,7 +8,7 @@ public class PrisonersDilema extends Game{
         this.currentRound = 1;
     }
 
-    public void run(Robot r1, Robot r2) {
+    public RoundInfo run(Robot r1, Robot r2) {
     	
     	if (checkEnd() == true) {
     		
@@ -50,6 +50,7 @@ public class PrisonersDilema extends Game{
         notifyScoreListeners(score1, score2);
 
         currentRound++;
+        return info1;
     }
 
     private int[] calculatePayoff(String a1, String a2) {

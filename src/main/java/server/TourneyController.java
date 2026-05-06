@@ -22,17 +22,6 @@ public class TourneyController {
         tournaments.add(new RoundRobinTournament("default", new PrisonersDilema(), new ArrayList<>()));
     }
 
-    @GetMapping("/available")
-    public List<String> getAvailableTournaments() {
-        List<String> available = new ArrayList<>();
-        for (Tournament t : tournaments) {
-            if (t.isAvailable()) {
-                available.add(t.getName());
-            }
-        }
-        return available;
-    }
-
     @GetMapping("/openTournaments")
     public String[] getOpenTournaments() {
         return tournaments.stream()

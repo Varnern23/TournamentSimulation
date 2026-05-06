@@ -16,7 +16,7 @@ public abstract class Game {
 
     public abstract int giveOutcome(Robot robot);
 
-    public abstract void run(Robot r1, Robot r2);
+    public abstract RoundInfo run(Robot r1, Robot r2);
 
     public abstract Boolean checkEnd();
 
