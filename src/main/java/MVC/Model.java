@@ -57,6 +57,14 @@ public class Model {
 	}
 	public void spectateTournament() {
 		String baseURI = String.format("http://%s:%s", this.serverIP.get(), this.serverPortNum.get());
+
+        RoundInfo[] fetched = client.get()
+                .uri(baseURI + "/tournaments/" + selectedTournament.get() + "/rounds")
+                .retrieve()
+                .body(RoundInfo[].class);
+        if (fetched != null) {
+            this.rounds.setAll(fetched);
+        }
 	}
 	public void connectToServer() {
 		String baseURI = String.format("http://%s:%s", this.serverIP.get(), this.serverPortNum.get());
