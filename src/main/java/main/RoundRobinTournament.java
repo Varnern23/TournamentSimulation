@@ -50,7 +50,7 @@ public class RoundRobinTournament extends Tournament {
 
 	@Override
 	public boolean isAvailable() {
-		if (bracket.size() > 4) {
+		if (bracket.size() >= 4) {
             return false;
         }
         else {

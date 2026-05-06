@@ -70,13 +70,13 @@ public class Model {
 		String baseURI = String.format("http://%s:%s", this.serverIP.get(), this.serverPortNum.get());
 		
 		String[] openTournaments = client.get()
-				.uri(baseURI + "/openTournaments")
+				.uri(baseURI + "/tournaments/openTournaments")
 				.retrieve()
 				.body(String[].class);
 		this.openTournaments.setAll(openTournaments);
 		
 		String[] closedTournaments = client.get()
-				.uri(baseURI + "/closedTournaments")
+				.uri(baseURI + "/tournaments/closedTournaments")
 				.retrieve()
 				.body(String[].class);
 		this.closedTournaments.setAll(closedTournaments);

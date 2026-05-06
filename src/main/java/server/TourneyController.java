@@ -9,6 +9,7 @@ import main.Robot;
 import main.RoundInfo;
 import main.RoundRobinTournament;
 import main.Tournament;
+import java.lang.Thread;
 
 import java.util.*;
 
@@ -22,6 +23,10 @@ public class TourneyController {
         tournaments.add(new RoundRobinTournament("default", new PrisonersDilema(), new ArrayList<>()));
     }
 
+    public void addTournament(String name, Tournament t) {
+        tournaments.add(t);
+    }
+
     @GetMapping("/openTournaments")
     public String[] getOpenTournaments() {
         return tournaments.stream()
@@ -32,6 +37,17 @@ public class TourneyController {
 
     @GetMapping("/closedTournaments")
     public String[] getClosedTournaments() {
+        for (Tournament t : tournaments) {
+        	if (!t.isAvailable()){
+                while (t.checkEnd() == false) {
+                    t.playNextMatch();
+                    try {
+                        Thread.sleep(500);
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        }
         return tournaments.stream()
                 .filter(t -> !t.isAvailable())
                 .map(Tournament::getName)

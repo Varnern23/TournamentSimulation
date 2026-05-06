@@ -2,7 +2,7 @@ package main;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-class RobotTest {
+  class RobotTest {
 
     class TestRobot extends Robot {
 

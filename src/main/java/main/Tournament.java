@@ -31,6 +31,12 @@ public abstract class Tournament {
     public void removeTournamentListener(TournamentListener listener) {
         listeners.remove(listener);
     }
+    public void playNextMatch() {
+        if (!checkEnd()) {
+            Robot r1 = players.get(0);
+            Robot r2 = players.get(1);
+        }
+    }
 
 
     protected void notifyRoundCompleted(RoundInfo round) {
