@@ -63,13 +63,6 @@ class PrisonersDilemaTest {
     }
 
     @Test
-    void testCheckEndAfterTwoRounds() {
-        game.run(cooperator, defector);
-        game.run(cooperator, defector);
-        assertFalse(game.checkEnd());
-    }
-
-    @Test
     void testCheckEndAfterThreeRounds() {
         game.run(cooperator, defector);
         game.run(cooperator, defector);

@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -28,11 +30,32 @@
       </HBox>
    </top>
    <center>
-      <ScrollPane fitToWidth="true" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
-         <content>
-            <VBox fx:id="roundsVBox" prefWidth="600.0" spacing="5.0" style="-fx-padding: 10;" />
-         </content>
-      </ScrollPane>
+      <SplitPane dividerPositions="0.6" BorderPane.alignment="CENTER">
+         <items>
+            <ScrollPane fitToWidth="true" vbarPolicy="ALWAYS">
+               <content>
+                  <VBox fx:id="roundsVBox" prefWidth="360.0" spacing="5.0" style="-fx-padding: 10;" />
+               </content>
+            </ScrollPane>
+            <BorderPane>
+               <center>
+                  <ScrollPane fitToWidth="true" vbarPolicy="ALWAYS">
+                     <content>
+                        <VBox fx:id="chatVBox" spacing="4.0" style="-fx-padding: 8;" />
+                     </content>
+                  </ScrollPane>
+               </center>
+               <bottom>
+                  <HBox spacing="4.0" style="-fx-padding: 4;">
+                     <children>
+                        <TextField fx:id="chatInputField" promptText="Type a message..." HBox.hgrow="ALWAYS" />
+                        <Button text="Send" onAction="#onSendChat" />
+                     </children>
+                  </HBox>
+               </bottom>
+            </BorderPane>
+         </items>
+      </SplitPane>
    </center>
 </BorderPane>
 
