@@ -15,7 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import MVC.Model;
 import MVC.ViewTransitionModel;
-import main.RoundInfo;
 
 @ExtendWith(ApplicationExtension.class)
 public class SpectateControllerTest {
@@ -64,14 +63,14 @@ public class SpectateControllerTest {
     public void testRoundAppearsAsLabelWhenAdded(FxRobot robot) {
         Assertions.assertThat(getRoundsVBox(robot).getChildren()).isEmpty();
 
-        addRound(robot, new RoundInfo(1, "RobotA", "S", "D", 0, 5));
+        addRound(robot, new RoundInfo(1, "Player", "RobotA", "S", "D", 0, 5));
 
         Assertions.assertThat(getRoundsVBox(robot).getChildren()).hasSize(1);
     }
 
     @Test
     public void testRoundLabelContainsCorrectText(FxRobot robot) {
-        addRound(robot, new RoundInfo(1, "RobotA", "S", "D", 0, 5));
+        addRound(robot, new RoundInfo(1, "Player", "RobotA", "S", "D", 0, 5));
 
         Label label = (Label) getRoundsVBox(robot).getChildren().get(0);
         Assertions.assertThat(label.getText()).contains("Round 1");
@@ -83,9 +82,9 @@ public class SpectateControllerTest {
     @Test
     public void testMultipleRoundsDisplayed(FxRobot robot) {
         robot.interact(() -> {
-            model.getRounds().add(new RoundInfo(1, "RobotA", "S", "D", 0, 5));
-            model.getRounds().add(new RoundInfo(2, "RobotA", "D", "D", 1, 1));
-            model.getRounds().add(new RoundInfo(3, "RobotA", "S", "S", 3, 3));
+            model.getRounds().add(new RoundInfo(1, "Player", "RobotA", "S", "D", 0, 5));
+            model.getRounds().add(new RoundInfo(2, "Player", "RobotA", "D", "D", 1, 1));
+            model.getRounds().add(new RoundInfo(3, "Player", "RobotA", "S", "S", 3, 3));
         });
         WaitForAsyncUtils.waitForFxEvents();
 
@@ -94,7 +93,7 @@ public class SpectateControllerTest {
 
     @Test
     public void testBackButtonClearsRoundsAndReturnsToList(FxRobot robot) {
-        addRound(robot, new RoundInfo(1, "RobotA", "S", "D", 0, 5));
+        addRound(robot, new RoundInfo(1, "Player", "RobotA", "S", "D", 0, 5));
         Assertions.assertThat(getRoundsVBox(robot).getChildren()).hasSize(1);
 
         robot.clickOn("Back");

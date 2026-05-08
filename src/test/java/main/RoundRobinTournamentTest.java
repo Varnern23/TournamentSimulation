@@ -35,4 +35,40 @@ class RoundRobinTournamentTest {
             assertTrue(player.getRoundScore() >= 0, player.getName() + " should have a valid score.");
         }
     }
+
+    @Test
+    void testIsAvailableWithThreePlayers() {
+        assertTrue(tournament.isAvailable());
+    }
+
+    @Test
+    void testAddRobotClosesTournament() {
+        tournament.addRobot(new Robot1("Robot4"));
+        assertFalse(tournament.isAvailable());
+    }
+
+    @Test
+    void testAddedRobotParticipatesInMatches() {
+        Robot1 bot = new Robot1("Robot4");
+        tournament.addRobot(bot);
+
+        while (!tournament.checkEnd()) {
+            tournament.playNextMatch();
+        }
+
+        assertTrue(bot.getRoundScore() >= 0);
+        assertFalse(tournament.getRoundHistory().isEmpty());
+    }
+
+    @Test
+    void testRoundHistoryPopulatedAfterPlay() {
+        tournament.addRobot(new Robot1("Robot4"));
+        tournament.playNextMatch();
+        assertFalse(tournament.getRoundHistory().isEmpty());
+    }
+
+    @Test
+    void testCheckEndFalseBeforeAllMatches() {
+        assertFalse(tournament.checkEnd());
+    }
 }

@@ -45,7 +45,7 @@ class ClientTest {
         RemoteBot bot = new RemoteBot("TestBot", "localhost", port);
 
         List<RoundInfo> history = List.of(
-            new RoundInfo(1, "Roboto", "D", "D", 5, 5)
+            new RoundInfo(1, "TestBot", "Roboto", "D", "D", 5, 5)
         );
 
         assertDoesNotThrow(() ->

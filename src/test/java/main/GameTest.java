@@ -15,7 +15,7 @@ class GameTest {
         public RoundInfo run(Robot r1, Robot r2) {
             notifyMoveListeners("TEST_MOVE");
             notifyScoreListeners(5, 3);
-            return new RoundInfo(1, "Opponent", "TEST_MOVE", "TEST_MOVE", 5, 3);
+            return new RoundInfo(1, "TestPlayer", "Opponent", "TEST_MOVE", "TEST_MOVE", 5, 3);
         }
 
         @Override

@@ -18,6 +18,7 @@ import java.util.*;
 public class TourneyController {
 
     private List<Tournament> tournaments = new ArrayList<>();
+    private Set<String> startedTournaments = new HashSet<>();
 
     public TourneyController() {
         tournaments.add(new RoundRobinTournament("default", new PrisonersDilema(), new ArrayList<>()));
@@ -35,18 +36,25 @@ public class TourneyController {
                 .toArray(String[]::new);
     }
 
-    @GetMapping("/closedTournaments")
-    public String[] getClosedTournaments() {
-        for (Tournament t : tournaments) {
-        	if (!t.isAvailable()){
-                while (t.checkEnd() == false) {
+    private void startIfClosed(Tournament t) {
+        if (!t.isAvailable() && !startedTournaments.contains(t.getName())) {
+            startedTournaments.add(t.getName());
+            new Thread(() -> {
+                while (!t.checkEnd()) {
                     t.playNextMatch();
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(2000);
                     } catch (Exception e) {
                     }
                 }
-            }
+            }).start();
+        }
+    }
+
+    @GetMapping("/closedTournaments")
+    public String[] getClosedTournaments() {
+        for (Tournament t : tournaments) {
+            startIfClosed(t);
         }
         return tournaments.stream()
                 .filter(t -> !t.isAvailable())
@@ -70,6 +78,7 @@ public class TourneyController {
             if (t.getName().equals(req.getTourneyName()) && t.isAvailable()) {
                 Robot bot = new RemoteBot(req.getRobotName(), req.getIp(), req.getPortNum());
                 t.addRobot(bot);
+                startIfClosed(t);
                 return "Registered " + req.getRobotName() + " to " + t.getName();
             }
         }

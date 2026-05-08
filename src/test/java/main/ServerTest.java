@@ -64,6 +64,32 @@ class ServerTest {
     }
 
     @Test
+    void getRoundsReturnsEmptyForUnplayedTournament() {
+        String url = baseUrl() + "/tournaments/default/rounds";
+        RoundInfo[] rounds = rest.getForObject(url, RoundInfo[].class);
+
+        Assertions.assertNotNull(rounds);
+        Assertions.assertEquals(0, rounds.length, "Unplayed tournament should have no rounds");
+    }
+
+    @Test
+    void getRoundsReturnsEmptyForUnknownTournament() {
+        String url = baseUrl() + "/tournaments/doesNotExist/rounds";
+        RoundInfo[] rounds = rest.getForObject(url, RoundInfo[].class);
+
+        Assertions.assertNotNull(rounds);
+        Assertions.assertEquals(0, rounds.length);
+    }
+
+    @Test
+    void closedTournamentsEndpointResponds() {
+        String url = baseUrl() + "/tournaments/closedTournaments";
+        String[] body = rest.getForObject(url, String[].class);
+
+        Assertions.assertNotNull(body);
+    }
+
+    @Test
     void registerWithBadDataStillResponds() {
         String url = baseUrl() + "/tournaments/register";
 

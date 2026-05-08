@@ -25,20 +25,22 @@ public class PrisonersDilema extends Game{
         int score2 = payoffs[1];
 
         RoundInfo info1 = new RoundInfo(
-                currentRound, 
+                currentRound,
+                r1.getName(),
                 r2.getName(),
                 action1,
-                action2, 
+                action2,
                 score1,
                 score2
         );
 
         RoundInfo info2 = new RoundInfo(
-                currentRound, 
+                currentRound,
+                r2.getName(),
                 r1.getName(),
                 action2,
-                action1, 
-                score2, 
+                action1,
+                score2,
                 score1
         );
 

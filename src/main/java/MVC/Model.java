@@ -1,6 +1,7 @@
 package MVC;
 import org.springframework.web.client.RestClient;
 import main.RoundInfo;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -57,30 +58,39 @@ public class Model {
 	}
 	public void spectateTournament() {
 		String baseURI = String.format("http://%s:%s", this.serverIP.get(), this.serverPortNum.get());
-
-        RoundInfo[] fetched = client.get()
-                .uri(baseURI + "/tournaments/" + selectedTournament.get() + "/rounds")
-                .retrieve()
-                .body(RoundInfo[].class);
-        if (fetched != null) {
-            this.rounds.setAll(fetched);
-        }
+		String uri = baseURI + "/tournaments/" + selectedTournament.get() + "/rounds";
+		new Thread(() -> {
+			try {
+				RoundInfo[] fetched = client.get()
+						.uri(uri)
+						.retrieve()
+						.body(RoundInfo[].class);
+				if (fetched != null) {
+					Platform.runLater(() -> this.rounds.setAll(fetched));
+				}
+			} catch (Exception e) {
+			}
+		}).start();
 	}
 	public void connectToServer() {
 		String baseURI = String.format("http://%s:%s", this.serverIP.get(), this.serverPortNum.get());
-		
-		String[] openTournaments = client.get()
-				.uri(baseURI + "/tournaments/openTournaments")
-				.retrieve()
-				.body(String[].class);
-		this.openTournaments.setAll(openTournaments);
-		
-		String[] closedTournaments = client.get()
-				.uri(baseURI + "/tournaments/closedTournaments")
-				.retrieve()
-				.body(String[].class);
-		this.closedTournaments.setAll(closedTournaments);
-		
+		new Thread(() -> {
+			try {
+				String[] open = client.get()
+						.uri(baseURI + "/tournaments/openTournaments")
+						.retrieve()
+						.body(String[].class);
+				String[] closed = client.get()
+						.uri(baseURI + "/tournaments/closedTournaments")
+						.retrieve()
+						.body(String[].class);
+				Platform.runLater(() -> {
+					if (open != null) openTournaments.setAll(open);
+					if (closed != null) closedTournaments.setAll(closed);
+				});
+			} catch (Exception e) {
+			}
+		}).start();
 	}
 	
 }

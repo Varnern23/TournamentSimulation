@@ -33,10 +33,11 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
 			borderPane.setCenter(sLoader.load());
 			SpectateTournamentViewController controller = sLoader.getController();
 			controller.setModel(model, this);
+			model.spectateTournament();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 	
 	

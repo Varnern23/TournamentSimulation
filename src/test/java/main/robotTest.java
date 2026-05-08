@@ -59,9 +59,25 @@ import org.junit.jupiter.api.Test;
     void testRecordRound() {
         Robot r = new TestRobot("Robo1");
 
-        RoundInfo info = new RoundInfo(1, "Roboto", "D", "D", 5, 5);
+        RoundInfo info = new RoundInfo(1, "Robo1", "Roboto", "D", "D", 5, 5);
         r.record(1, info);
 
         assertEquals(info, r.getRoundInfo(1));
+    }
+
+    @Test
+    void remoteBotRecordStoresLocallyEvenIfServerUnreachable() {
+        RemoteBot bot = new RemoteBot("Bot", "localhost", 1);
+
+        RoundInfo info = new RoundInfo(1, "Bot", "Opp", "S", "D", 0, 5);
+        bot.record(1, info);
+
+        assertEquals(info, bot.getRoundInfo(1));
+    }
+
+    @Test
+    void remoteBotGetActionReturnsErrorWhenUnreachable() {
+        RemoteBot bot = new RemoteBot("Bot", "localhost", 1);
+        assertEquals("ERROR", bot.getAction());
     }
 }

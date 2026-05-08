@@ -3,6 +3,7 @@ package main;
 import java.util.List;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestClient;
+import java.util.ArrayList;
 
 public class RemoteBot extends Robot{
 	
@@ -17,6 +18,12 @@ public class RemoteBot extends Robot{
 		this.client = RestClient.builder()
 				.baseUrl("http://" + ip + ":" + portNum)
 				.build();
+	}
+
+	@Override
+	public void record(int round, RoundInfo info) {
+		super.record(round, info);
+		giveRecord(info.getOppName(), new ArrayList<>(history.values()));
 	}
 
 	@Override

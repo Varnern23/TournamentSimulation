@@ -65,15 +65,15 @@ public class ModelTest {
             }
         });
 
-        model.getRounds().add(new RoundInfo(1, "RobotA", "COOPERATE", "DEFECT", 0, 5));
+        model.getRounds().add(new RoundInfo(1, "Player", "RobotA", "COOPERATE", "DEFECT", 0, 5));
 
         assertTrue(fired[0]);
     }
 
     @Test
     public void testRoundsClearedAfterClear() {
-        model.getRounds().add(new RoundInfo(1, "RobotA", "COOPERATE", "DEFECT", 0, 5));
-        model.getRounds().add(new RoundInfo(2, "RobotB", "DEFECT", "COOPERATE", 5, 0));
+        model.getRounds().add(new RoundInfo(1, "Player", "RobotA", "COOPERATE", "DEFECT", 0, 5));
+        model.getRounds().add(new RoundInfo(2, "Player", "RobotB", "DEFECT", "COOPERATE", 5, 0));
         assertEquals(2, model.getRounds().size());
 
         model.getRounds().clear();

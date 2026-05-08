@@ -15,7 +15,8 @@ public class RoundRobinTournament extends Tournament {
 
     @Override
     public Robot run(Robot r1, Robot r2) {
-        game.run(r1, r2);
+        RoundInfo info = game.run(r1, r2);
+        addRound(info);
         return game.giveOutcome(r1) > game.giveOutcome(r2) ? r1 : r2;
     }
 
@@ -49,12 +50,13 @@ public class RoundRobinTournament extends Tournament {
     }
 
 	@Override
+	public void addRobot(Robot r) {
+		super.addRobot(r);
+		bracket.add(r);
+	}
+
+	@Override
 	public boolean isAvailable() {
-		if (bracket.size() >= 4) {
-            return false;
-        }
-        else {
-            return true;
-        }
+		return bracket.size() < 4;
 	}
 }

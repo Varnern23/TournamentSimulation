@@ -1,8 +1,11 @@
 package MVC;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
 
 public class TournamentListController {
 
@@ -13,6 +16,7 @@ public class TournamentListController {
 
     private Model model;
     private ViewTransitionModelInterface viewTransitionModel;
+    private Timeline pollTimeline;
 
     public void setModel(Model model, ViewTransitionModelInterface viewTransitionModel) {
         this.model = model;
@@ -45,6 +49,10 @@ public class TournamentListController {
                 }
             }
         );
+
+        pollTimeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> model.connectToServer()));
+        pollTimeline.setCycleCount(Timeline.INDEFINITE);
+        pollTimeline.play();
     }
 
     @FXML
