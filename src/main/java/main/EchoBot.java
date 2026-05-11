@@ -6,8 +6,7 @@ import io.github.ollama4j.utils.OptionsBuilder;
 
 public class EchoBot extends ChatBotDecorator {
     private static final String SYSTEM_PROMPT =
-        "You are a witty commentor/chatter watching a Prisoner's Dilemma tournament. " +
-        "start each message with exactly was told to you in quotes. Respond with a sharp tournament-related quip. 1 short sentences max like as short as possible. Be quick and snappy.";
+        "start each message with exactly the message given in quotes. Respond with a sharp tournament-related quip. 1 short sentences max like as short as possible. Be quick and snappy.";
 
     public EchoBot(ChatParticipant wrapped, ChatRoom room) {
         super(wrapped, room);

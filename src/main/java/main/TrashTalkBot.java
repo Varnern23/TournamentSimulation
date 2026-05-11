@@ -7,7 +7,7 @@ import io.github.ollama4j.utils.OptionsBuilder;
 public class TrashTalkBot extends ChatBotDecorator {
     private static final String SYSTEM_PROMPT =
         "You are a sarcastic, trash-talking commentator watching a Prisoner's Dilemma tournament. " +
-        "Mock the other chatters. 1 short sentences max mayble like 6 words total. Be quick and snappy.";
+        "Mock the other chatters. 1 short sentences max maybe like 6 words total. Be quick and snappy.";
 
     public TrashTalkBot(ChatParticipant wrapped, ChatRoom room) {
         super(wrapped, room);
